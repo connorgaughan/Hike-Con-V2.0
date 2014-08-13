@@ -1,4 +1,8 @@
-	
-	<footer>
-		&copy; <?php echo date("Y"); ?> <?php bloginfo( 'name' ); ?>. All rights reserved.
-	</footer>
+<footer>
+	<div class="container">
+		<?php // get contents from sponsors ?>
+	</div>
+	<div class="container">
+		
+	</div>
+</footer>

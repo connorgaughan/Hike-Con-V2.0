@@ -12,14 +12,15 @@
 //-------------------------------------------------------------------------------------------------  General Styles
 body {width: 100%; @extend .clearfix;}
 .container {@extend .clearfix; margin: 0 auto; max-width: 1200px; padding:0 20px;}
-
-//-------------------------------------------------------------------------------------------------  Extends
-.is-uppercase {text-transform:uppercase; letter-spacing:1px;}
-.is-inline{@include inline-block();}
-.is-centered{text-align:center;}
 .clearfix{@include clearfix();}
 
+
 //-------------------------------------------------------------------------------------------------  Layout
+
+//--------------------------------------------------------------  Header
+header.hero, header.hero a{
+	color:$white;
+}
 
 
 //-------------------------------------------------------------------------------------------------  Print styles

@@ -8,7 +8,7 @@ $base-line-height					: 6px;
 $round-to-nearest-half-line			: false;
 
 //-------------------------------------------------------------------------------------------------  Base Typography
-body{@include adjust-font-size-to($base-font-size, 4); color:$primary;}
+body{font-family: 'Droid Sans', sans-serif; @include adjust-font-size-to($base-font-size, 4); color:$primary;}
 
 //-------------------------------------------------------------------------------------------------  Headlines
 h1 { 

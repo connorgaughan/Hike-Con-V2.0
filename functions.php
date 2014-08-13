@@ -76,7 +76,9 @@
 
 
 	// Custom Post Types
-	// require_once( 'custom-functions/meta_secondary-headline.php' );
+	require_once( 'parts/functions/post-types.php' );
+	require_once( 'parts/functions/speakers-metaBox.php' );
+	require_once( 'parts/functions/sponsors-metaBox.php' );
 	
 	
 	// Scripts
@@ -86,6 +88,8 @@
 		wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js','', '', true );
 		
 		wp_enqueue_script( 'site', get_template_directory_uri().'/_assets/js/site.min.js', array( 'jquery' ), '', true );
+
+		wp_enqueue_style ( 'gaFonts', 'http://fonts.googleapis.com/css?family=Droid+Sans:400,700', '', '', 'screen' );
 
 		wp_enqueue_style( 'screen', get_stylesheet_directory_uri().'/_assets/css/style.css', '', '', 'screen' );
 	}	
