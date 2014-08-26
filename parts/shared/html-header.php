@@ -56,7 +56,7 @@
 				// The images are added to the hero section as background image with media queries
 				?>
 				<style type="text/css">
-			    	.hero { background-image: url(<?php echo $thumbnailURL ?>); padding-top:3em; padding-bottom:2em; background-size:cover; background-repeat:none; background-position:top center; }
+			    	.hero { background-image: url(<?php echo $thumbnailURL ?>); padding-top:7em; padding-bottom:2em; background-size:cover; background-repeat:none; background-position:top center; }
 					@media screen and (min-width: 36em){ .hero{ background-image: url(<?php echo $smallURL ?>); padding-top:6em; padding-bottom:6em; } }
 					@media screen and (min-width: 48em){ .hero{ background-image: url(<?php echo $mediumURL ?>); padding-top:9em; padding-bottom:9em; } }
 					@media screen and (min-width: 50em){ .hero{ background-image: url(<?php echo $largeURL ?>); padding-top:12em; padding-bottom:12em; } }

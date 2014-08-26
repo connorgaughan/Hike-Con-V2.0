@@ -8,19 +8,568 @@
 @import "libs/grid";
 @import "libs/typography"; 	
 @import "libs/forms";	
+@import "libs/modal";
 
 //-------------------------------------------------------------------------------------------------  General Styles
 body {width: 100%; @extend .clearfix;}
 .container {@extend .clearfix; margin: 0 auto; max-width: 1200px; padding:0 20px;}
 .clearfix{@include clearfix();}
-
+img{max-width:100%; height:auto;}
+li{list-style-type:none;}
+a{
+	color:$primary;
+	text-decoration:none;
+	position:relative;
+	@include transition-property(all);
+  	@include transition-duration(.25s);
+  	@include transition-timing-function(ease-in-out);
+	&:after{
+		content:"";
+		display:block;
+		width:100%;
+		height:1px;
+		background:$highlight;
+		position:absolute;
+		bottom:0;
+		@include transition-property(all);
+	  	@include transition-duration(.25s);
+	  	@include transition-timing-function(ease-in-out);
+	}
+	&:hover{
+		color:$highlight;
+		&:after{
+			bottom:-5px;
+			background:transparent;
+		}
+	}
+}
+p{
+	padding-bottom:12px;
+}
+.center, h1{
+	text-align:center;
+}
+section{
+	margin-bottom:1.5em;
+}
+.button{
+	color:$highlight;
+	background:$white;
+	padding:15px 30px;
+	display:block;
+	width:200px;
+	margin:0 auto;
+	text-align:center;
+	text-decoration:none;
+	border:4px solid $highlight;
+	font-weight:bold;
+	@include adjust-font-size-to(18px);
+	@include transition-property(all);
+  	@include transition-duration(.25s);
+  	@include transition-timing-function(ease-in-out);
+  	&:after{
+		content:"";
+		display:none;
+	}
+  	&:hover{
+  		background:$highlight;
+  		color:$white;
+  	}
+}
 
 //-------------------------------------------------------------------------------------------------  Layout
 
 //--------------------------------------------------------------  Header
-header.hero, header.hero a{
+header.fixedNav{
+	z-index:1000;
+	width:100%;
+	position:fixed;
+	top:0;
+	background:$highlight;
+	color:$white;
+	padding-top:10px;
+	padding-bottom:10px;
+	.menuContainer{display:none;}
+	.menuContainer.active{
+		display:block;
+		position:fixed;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		background:$highlight;
+		background:rgba(255,62,62, .95);
+		padding:2em;
+		ul li{
+			margin:0 0 1.125em;
+			@include adjust-font-size-to(24px);
+		}
+		li.register a{
+			border-color:$white;
+			color:$white;
+			font-weight:bold;
+		}
+	}
+	.menu{
+		padding:0;
+		margin:0;
+	}
+	a{ 
+		color:$white; 
+		text-decoration:none;
+		&:after{
+			content:"";
+			display:none;
+		}
+	}
+}
+
+.presents{
+	display:block;
+	float:left;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	@include adjust-font-size-to(14px, 2.5);
+	sub{
+		@include adjust-font-size-to(10px);
+	}
+	span.subTag{
+		display:block;
+		@include adjust-font-size-to(12px);
+	}
+}
+
+.menuToggle{
+	display:block;
+	height:36px;
+	width:36px;
+	position:relative;
+	float:right;
+	&:hover{
+		cursor:pointer;
+		span:before{
+			top:-8px;
+		}
+		span:after{
+			bottom:-8px;
+		}
+	}
+	span{
+		display:block;
+		width:36px;
+		height:4px;
+		@include border-radius(4px);
+		background:$white;
+		position:absolute;
+		top:16px;
+		&:before, &:after{
+			content:"";
+			display:block;
+			width:36px;
+			height:4px;
+			@include border-radius(4px);
+			background:$white;
+			position:absolute;
+			@include transition-property(all);
+  			@include transition-duration(.25s);
+  			@include transition-timing-function(ease-in-out);
+		}
+		&:before{
+			top:-10px;
+		}
+		&:after{
+			bottom:-10px;
+		}
+	}
+}
+
+.menuToggle.active{
+	span{
+		&:before{
+			top:0;
+		}
+		&:after{
+			bottom:0;
+		}
+	}
+}
+
+
+//--------------------------------------------------------------  Header
+.hero{
 	color:$white;
 }
+h1+p{
+	@include padding-trailer(5);
+	@include adjust-font-size-to(18px);
+}
+
+p .register, li.register a{
+	display:inline-block;
+	padding:.5em 1.875em;
+	@include adjust-font-size-to(18px);
+	color:$highlight;
+	border: 4px solid $highlight;
+	text-decoration:none;
+	@include transition-property(all);
+  	@include transition-duration(.25s);
+  	@include transition-timing-function(ease-in-out);
+  	font-weight:bold;
+	&:hover{
+		background:$highlight;
+		color:$white;
+	}
+	&:after{
+		content:"";
+		display:none;
+	}
+}
+
+@media screen and (min-width: 50em){
+	.desktopHide{
+		display:none;
+	}
+	.presents{
+		display:block;
+		width:25%;
+		float:left;
+		@include adjust-font-size-to(24px, 5);
+		span.subTag{
+			@include adjust-font-size-to(10px);
+		}
+	}
+	header.fixedNav{
+		position:absolute;
+		background:transparent;
+		padding-top:2.5em;
+		.menuContainer{
+			position:static;
+			display:block;
+			float:left;
+			width:75%;
+			text-align:right;
+			background:transparent;
+			ul li{
+				display:inline-block;
+				margin-left:2em;
+			}
+		}
+	}
+	.hero h1+p{
+		@include adjust-font-size-to(36px);
+	}
+}
+
+
+//--------------------------------------------------------------  Intro/Page Content
+.intro p, .pageContent p{
+	color:$secondary;
+	text-align:center;
+	@include adjust-font-size-to(18px);
+	padding-bottom:3em;
+}
+@media screen and (min-width:40em){
+	.intro, .pageContent{
+		p {@include adjust-font-size-to(24px, 6);}
+		@include column(8);
+		@include push(2);
+		@include pull(2);
+	}
+	.includeBackground{
+		background: url(../images/left-bg.svg) top left repeat-y,
+					url(../images/right-bg.svg) top right repeat-y;
+	}
+	.no-svg .includeBackground{
+		background: url(../images/left-bg.png) top left repeat-y,
+					url(../images/right-bg.png) top right repeat-y;
+	}
+}
+//-------------------------------------------------------------- Photo Gallery
+.photoGallery{
+	background: url(../images/photoGallery-sm.jpg) center center no-repeat;
+	background-size:cover;
+	padding:8em 0;
+}
+@media screen and (min-width: 40em){ 
+	.photoGallery{
+		background: url(../images/photoGallery-normal.jpg) center center no-repeat;
+		background-size:cover;
+		padding:12em 0;
+	}
+}
+@media screen and (min-width: 60em){ 
+	.photoGallery{
+		background: url(../images/photoGallery-med.jpg) center center no-repeat;
+		background-size:cover;
+		padding:18em 0;
+	}
+}
+@media screen and (min-width: 60em){ 
+	.photoGallery{
+		background: url(../images/photoGallery-lrg.jpg) center center no-repeat;
+		background-size:cover;
+		padding:20em 0;
+	}
+}
+
+//--------------------------------------------------------------  Register Content
+.no-svg .registerButton{
+	background: url(../images/hike-register-button.png) center center no-repeat $white;
+}
+.registerButton{
+	background: url(../images/hike-register-button.svg) center center no-repeat $white;
+	text-align:center;
+	display:block;
+	width:160px;
+	height:80px;
+	padding-top:25px;
+	font-weight:bold;
+	@include adjust-font-size-to(18px);
+	color:$highlight;
+	margin:-35px auto 0 auto;
+	&:after{
+		content:"";
+		display:none;
+	}
+	&:hover{
+		color:$primary;
+	}
+}
+.registerBox{
+	@extend .clearfix;
+	text-align:center;
+	max-width:700px;
+	width:90%;
+	margin:0 auto;
+	border:6px solid $highlight;
+	padding:10px 30px 50px 30px;
+	position:relative;
+	p{
+		@include adjust-font-size-to(24px);
+	}
+}
+.bean{
+	display:block;
+	margin:1.5em auto 2em auto;
+	width:67px;
+	height:37px;
+}
+
+
+@media screen and (min-width:46em){
+	.headlineWrap{
+		position:absolute;
+		width:98%;
+		left:1%;
+		right:1%;
+		top:-36px;
+		h2{
+			margin:0;
+			padding:0;
+			text-align:center;
+			span{
+				display:inline-block;
+				padding:.5em;
+				background:$white;
+			}
+		}
+	}
+	.registerBox{
+		padding:60px 80px;
+		text-align:left;
+	}
+	.dates{
+		@include column(5);
+	}
+	.dates.second{
+		@include push(2);
+	}
+}
+
+//--------------------------------------------------------------  Profiles/People
+.speakers h3, .team h3{
+	text-align:center;
+}
+
+.profile li {
+	margin-bottom:2em;
+	text-align:center;
+	a{
+		@include transition-property(all);
+	  	@include transition-duration(.25s);
+	  	@include transition-timing-function(ease-in-out);
+	  	text-decoration:none; 
+	  	h4{
+	  		text-decoration:underline; 
+	  	}
+	}
+	h4{ 
+		color:$highlight; 
+		margin:0;
+		padding:10px 0 0 0;
+	}
+	p{ 
+		color:$primary; 
+	}
+	&:hover{
+		img{ border:8px solid $highlight; }
+	}
+	img{
+		max-width:150px;
+		display:block;
+		margin:0 auto;
+		@include border-radius(100%);
+		border:0px solid transparent;
+		@include transition-property(all);
+	  	@include transition-duration(.25s);
+	  	@include transition-timing-function(ease-in-out);
+	}
+}
+
+.team .container{
+	padding-bottom:2.5em;
+}
+
+.speakerModal{
+	max-width:500px;
+	width:95%;
+	margin:10% auto;
+	background:$white;
+	padding:5px;
+	.speakerBorder{
+		padding:20px;
+		border: 6px solid $highlight;
+		color:$secondary;
+		img{
+			max-width:150px;
+			display:block;
+			margin:-75px auto 0 auto;
+			@include border-radius(100%);
+			border:12px solid $white;
+		}
+		h1{
+			color:$highlight;
+			@include adjust-font-size-to(32px);
+			margin:0;
+			padding:.25em 0 0 0;
+			text-align:center;
+		}
+		time{
+			display:block;
+			margin:.25em auto 1em auto;
+			text-align:center;
+			color:$secondary;
+		}
+		ul {
+			text-align:center;
+			margin:0 0 1.5em 0;
+			padding:0;
+			li{
+				display:inline;
+				margin:0 10px;
+			}
+		}
+	}
+}
+
+
+@media screen and (min-width:30em){
+	.profile li{
+		@include column(6);
+		min-height:250px;
+	}
+}
+@media screen and (min-width:46em){
+	.speakers h3, .team h3{
+		text-align:left;
+	}
+	.profile li{
+		@include column(4);
+		min-height:250px;
+	}
+}
+@media screen and (min-width:64em){
+	.profile li{
+		@include column(3);
+		min-height:250px;
+	}
+}
+
+
+//--------------------------------------------------------------  Footer
+.no-svg footer{
+	background:url(../images/hike-partners-bg.png) top left repeat $highlight;
+}
+footer{
+	background:url(../images/hike-partners-bg.svg) top left repeat $highlight;
+	padding-top:2.5em;
+	h3{
+		color:$white;
+		text-align:center;
+	}
+	.heart{
+		display:block;
+		max-width:80px;
+		margin:0 auto;
+	}
+	ul li{
+		margin-top:1.5em;
+	}
+	li img{
+		display:block;
+		margin:0 auto;
+	}
+	.footerBottom{
+		background:darken($highlight, 25%);
+		color:$white;
+		text-align:center;
+		font-weight:300;
+		padding:2.5em 0;
+		margin-top:2em;
+		p{
+			padding-bottom:6px;
+			@include adjust-font-size-to(24px);
+			a{
+				color:$white;
+				&:after{
+					background:$white;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width:48em){
+	footer ul li{
+		@include column(6);
+		margin-top:1.5em;
+	}
+}
+
+@media screen and (min-width:64em){
+	footer ul li{
+		@include column(4);
+		margin-top:1.5em;
+	}
+}
+
+@media screen and (min-width:80em){
+	footer ul li{
+		@include column(3);
+		margin-top:1.5em;
+	}
+}
+
+//--------------------------------------------------------------  Gallery
+#gallery{
+	a:after{
+		content:"";
+		display:none;
+	}
+	img{
+		border:none !important;
+	}
+}
+
 
 
 //-------------------------------------------------------------------------------------------------  Print styles
