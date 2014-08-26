@@ -1,6 +1,8 @@
 <header class="fixedNav">
 	<div class="container">
-		<p class="presents">The Secret<br />Handshake<sub>&reg;</sub><span class="subTag">presents</span></p>
+		<div class="presents">
+			<img class="tsh" src="<?php echo get_stylesheet_directory_uri(); ?>/_assets/images/hike-tsh-logo.svg" alt="The Secret Handshake" />
+		</div>
 		<?php wp_nav_menu(
 			array(
 				'container' 		=> 'nav',
