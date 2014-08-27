@@ -12,9 +12,9 @@
 	</div>
 	<div class="footerBottom">
 		<div class="container">
-			<p>Questions? <a href="mailto:hello@hikecon.com">hello@hikecon.com</a> or tweet <a href="https://www.twitter.com/hikecon">@hikecon</a></p>
-			<p><a href="<?php echo get_bloginfo('url')?>/our-purpose">Purpose</a> &bull; <a href="http://www.learnthesecrethandshake.com">The Secret Handshake</a></p>
-			<p>Organized by <a href="">Jason Schwartz</a> &amp; <a href="">Laura Winn</a></p>
+			<p>Created by<br /><a href="http://www.learnthesecrethandshake.com"><img class="footerLogo"src="<?php echo get_stylesheet_directory_uri(); ?>/_assets/images/hike-tsh-logo-sans-tag.png" alt="The Secret Handshake"/></a></p>
+			<p>Questions? <a href="mailto:hello@hikecon.com">hello@hikecon.com</a> or Tweet <a href="https://twitter.com/secrethndshk">@secrethndshk</a></p>
+			<p>Made possible by our <a href="<?php echo get_bloginfo('url')?>/our-purpose">Chairs, Board &amp; Volunteers</a></p>
 		</div>
 	</div>
 </footer>

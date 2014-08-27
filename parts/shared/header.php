@@ -1,7 +1,13 @@
 <header class="fixedNav">
 	<div class="container">
 		<div class="presents">
-			<img class="tsh" src="<?php echo get_stylesheet_directory_uri(); ?>/_assets/images/hike-tsh-logo.svg" alt="The Secret Handshake" />
+			<a href="http://learnthesecrethandshake.com/" title="Learn the Secret Handshake">
+				<?php if(is_front_page()){ ?>
+					<img class="tsh" src="<?php echo get_stylesheet_directory_uri(); ?>/_assets/images/hike-tsh-logo-revised.png" alt="The Secret Handshake" />
+				<?php } else { ?>
+					<img class="tsh" src="<?php echo get_stylesheet_directory_uri(); ?>/_assets/images/hike-tsh-logo-sans-tag.png" alt="The Secret Handshake" />
+				<?php } ?>
+			</a>
 		</div>
 		<?php wp_nav_menu(
 			array(

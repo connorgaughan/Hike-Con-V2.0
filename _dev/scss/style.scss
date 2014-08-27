@@ -110,6 +110,26 @@ header.fixedNav{
 			font-weight:bold;
 		}
 	}
+	li.chicago:after{
+		content:"Upcoming";
+		display:inline-block;
+		@include adjust-font-size-to(12px);
+		color:$highlight;
+		padding:.125em .5em;
+		background:$white;
+		text-align:center;
+		margin:0 0 0 15px;
+	}
+	li.sanfran:after{
+		content:"Past Event";
+		display:inline-block;
+		@include adjust-font-size-to(12px);
+		color:$highlight;
+		padding:.125em .5em;
+		background:$white;
+		text-align:center;
+		margin:0 0 0 15px;
+	}
 	.menu{
 		padding:0;
 		margin:0;
@@ -193,9 +213,22 @@ header.fixedNav{
 .hero{
 	color:$white;
 }
+.san-francisco h1:after{
+	display:block;
+	margin:0 auto;
+	text-align:center;
+	content:"April 4th & 5th, 2014";
+}
 h1+p{
+	@include padding-leader(2);
 	@include padding-trailer(5);
 	@include adjust-font-size-to(18px);
+}
+
+.san-francisco h1:after{
+	@include padding-leader(2);
+	@include padding-trailer(5);
+	@include adjust-font-size-to(6px);
 }
 
 p .register, li.register a{
@@ -247,10 +280,32 @@ p .register, li.register a{
 				display:inline-block;
 				margin-left:2em;
 			}
+			li.chicago, li.sanfran{
+				position:relative;
+				padding-bottom:35px;
+			}
+			li.chicago:hover:after, li.sanfran:hover:after{
+				bottom: 0;
+			}
+			li.chicago:after, li.sanfran:after{
+				display:inline-block;
+				position: absolute;
+				bottom: 200px;
+				left: 0;
+				margin: 0;
+				padding: .25em;
+				@include transition-property(all);
+  				@include transition-duration(.25s);
+  				@include transition-timing-function(ease-in-out);
+			}
 		}
 	}
 	.hero h1+p{
 		@include adjust-font-size-to(36px);
+	}
+	.san-francisco h1:after{
+		@include adjust-font-size-to(6px);
+		font-weight:300;
 	}
 }
 
@@ -500,6 +555,12 @@ p .register, li.register a{
 footer{
 	background:url(../images/hike-partners-bg.svg) top left repeat $highlight;
 	padding-top:2.5em;
+	.footerLogo{
+		display:block;
+		margin:0 auto 1em auto;
+		max-width:250px;
+		padding-left:2%;
+	}
 	h3{
 		color:$white;
 		text-align:center;
@@ -525,7 +586,7 @@ footer{
 		margin-top:2em;
 		p{
 			padding-bottom:6px;
-			@include adjust-font-size-to(24px);
+			@include adjust-font-size-to(18px);
 			a{
 				color:$white;
 				&:after{
