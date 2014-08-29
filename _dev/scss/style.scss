@@ -210,8 +210,12 @@ header.fixedNav{
 
 
 //--------------------------------------------------------------  Header
-.hero{
+.hero, .homeHero{
 	color:$white;
+	text-align:center;
+	h1 img{
+		display:inline;
+	}
 }
 .san-francisco h1:after{
 	display:block;
@@ -282,25 +286,25 @@ p .register, li.register a{
 			}
 			li.chicago, li.sanfran{
 				position:relative;
-				padding-bottom:35px;
-			}
-			li.chicago:hover:after, li.sanfran:hover:after{
-				bottom: 0;
+				padding-bottom:25px;
 			}
 			li.chicago:after, li.sanfran:after{
-				display:inline-block;
+				display:block;
 				position: absolute;
-				bottom: 200px;
-				left: 0;
+				@include opacity(0);
+				bottom: 0;
 				margin: 0;
-				padding: .25em;
+				padding: .25em .5em;
 				@include transition-property(all);
   				@include transition-duration(.25s);
   				@include transition-timing-function(ease-in-out);
 			}
+			li.chicago:hover:after, li.sanfran:hover:after{
+				@include opacity(1);
+			}
 		}
 	}
-	.hero h1+p{
+	.homeHero h1+p{
 		@include adjust-font-size-to(36px);
 	}
 	.san-francisco h1:after{
@@ -309,6 +313,258 @@ p .register, li.register a{
 	}
 }
 
+
+.homeHero {  
+	.slide1{
+		padding-top:7em; 
+		padding-bottom:2em;
+		background-image: url(../images/slider/1-450x169.jpg); 
+		background-size:cover; 
+		background-repeat:none; 
+		background-position:top center; 
+	}
+	.slide2{
+		padding-top:7em; 
+		padding-bottom:2em;
+		background-image: url(../images/slider/2-450x169.jpg); 
+		background-size:cover; 
+		background-repeat:none; 
+		background-position:top center; 
+	}
+	.slide3{
+		padding-top:7em; 
+		padding-bottom:2em;
+		background-image: url(../images/slider/3-450x169.jpg); 
+		background-size:cover; 
+		background-repeat:none; 
+		background-position:top center; 
+	}
+	.slide4{
+		padding-top:7em; 
+		padding-bottom:2em;
+		background-image: url(../images/slider/4-450x169.jpg); 
+		background-size:cover; 
+		background-repeat:none; 
+		background-position:top center; 
+	}
+}
+
+@media screen and (min-width: 36em){ 
+	.homeHero{ 
+		.slide1{
+			background-image: url(../images/slider/1-600x225.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide2{
+			background-image: url(../images/slider/2-600x225.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide3{
+			background-image: url(../images/slider/3-600x225.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide4{
+			background-image: url(../images/slider/4-600x225.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+	}
+}
+@media screen and (min-width: 48em){ 
+	.homeHero{ 
+		.slide1{
+			background-image: url(../images/slider/1-800x301.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide2{
+			background-image: url(../images/slider/2-800x301.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide3{
+			background-image: url(../images/slider/3-800x301.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide4{
+			background-image: url(../images/slider/4-800x301.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+	}
+}
+@media screen and (min-width: 50em){ 
+	.homeHero{ 
+		.slide1{
+			background-image: url(../images/slider/1-1000x376.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide2{
+			background-image: url(../images/slider/2-1000x376.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide3{
+			background-image: url(../images/slider/3-1000x376.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide4{
+			background-image: url(../images/slider/4-1000x376.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+	} 
+}
+@media screen and (min-width: 60em){ 
+	.homeHero{ 
+		.slide1{
+			background-image: url(../images/slider/1-1200x451.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide2{
+			background-image: url(../images/slider/2-1200x451.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide3{
+			background-image: url(../images/slider/3-1200x451.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide4{
+			background-image: url(../images/slider/4-1200x451.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+	} 
+}
+@media screen and (min-width: 70em){ 
+	.homeHero{ 
+		.slide1{
+			background-image: url(../images/slider/1-1600x602.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide2{
+			background-image: url(../images/slider/2-1600x602.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide3{
+			background-image: url(../images/slider/3-1600x602.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide4{
+			background-image: url(../images/slider/4-1600x602.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+	} 
+}
+@media screen and (min-width: 80em){ 
+	.homeHero{ 
+		.slide1{
+			background-image: url(../images/slider/1.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide2{
+			background-image: url(../images/slider/2.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide3{
+			background-image: url(../images/slider/3.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+		.slide4{
+			background-image: url(../images/slider/4.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:15em; 
+			padding-bottom:15em;
+		} 
+	} 
+}
 
 //--------------------------------------------------------------  Intro/Page Content
 .intro p, .pageContent p{
@@ -627,6 +883,52 @@ footer{
 	img{
 		border:none !important;
 	}
+}
+
+//--------------------------------------------------------------  Slideshow minified CSS
+.bx-wrapper {
+	position: relative;
+	margin: 0 auto 60px;
+	padding: 0;
+	*zoom: 1;
+}
+
+.bx-wrapper img {
+	max-width: 100%;
+	display: block;
+}
+
+/** THEME
+===================================*/
+
+.bx-wrapper .bx-viewport {
+	background: #fff;
+	
+	/*fix other elements on the page moving (on Chrome)*/
+	-webkit-transform: translatez(0);
+	-moz-transform: translatez(0);
+    	-ms-transform: translatez(0);
+    	-o-transform: translatez(0);
+    	transform: translatez(0);
+}
+
+.bx-wrapper .bx-pager,
+.bx-wrapper .bx-controls-auto {
+	position: absolute;
+	bottom: -30px;
+	width: 100%;
+}
+
+/* LOADER */
+
+.bx-wrapper .bx-loading {
+	min-height: 50px;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2000;
 }
 
 

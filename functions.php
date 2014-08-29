@@ -87,6 +87,10 @@
 
 		wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js','', '', true );
 		
+		if(is_front_page()){
+			wp_enqueue_script( 'slider', get_template_directory_uri().'/_assets/js/jquery.bxslider.min.js', array( 'jquery' ), '', true );
+		}
+		
 		wp_enqueue_script( 'site', get_template_directory_uri().'/_assets/js/site.min.js', array( 'jquery' ), '', true );
 
 		wp_enqueue_style ( 'gaFonts', 'http://fonts.googleapis.com/css?family=Droid+Sans:400,700', '', '', 'screen' );
