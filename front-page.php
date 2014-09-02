@@ -1,45 +1,49 @@
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
 
-<section class="includeBackground">
+<section id="details" class="includeBackground">
 	<div class="container">
 		<div class="intro">
-
 		<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+			<img class="bean" src="<?php echo get_stylesheet_directory_uri(); ?>/_assets/images/hike-cloud-gate-icon.svg" alt="Cloud Gate"/>
 			<h2><?php the_title(); ?></h2>
 			<?php the_content(); ?>
 		<?php endwhile; wp_reset_query(); ?>
-
+		</div>
+	</div>
+</section>
+<section class="register includeBackground">
+	<div class="registerBox">
+		<div class="dates">
+			<h3>Oct. 24th</h3>
+			<p>Kick Off @ <a href="http://workshopchicago.co/#home">Workshop</a></p>
+			<p>Friday, 6-9p</p>
+		</div>
+		<div class="dates second">
+			<h3>Oct. 25th</h3>
+			<p>Conference @ <a href="http://www.morningstar.com/">Morningstar</a></p>
+			<p>Saturday, 8a-6p</p>
 		</div>
 	</div>
 </section>
 
 <section class="photoGallery">
-	<a href="<?php echo get_bloginfo('url'); ?>/gallery" class="button">Photo Gallery</a>
-</section>
+	 <?php 
+		$gallery = get_post_gallery_images( 236 );
 
-<section class="register includeBackground">
-	<div class="container">
-		<img class="bean" src="<?php echo get_stylesheet_directory_uri(); ?>/_assets/images/hike-cloud-gate-icon.svg" alt="Cloud Gate"/>
-		<div class="registerBox">
-			<div class="headlineWrap">
-				<h2><span>Join us in Chicago</span></h2>
-			</div>
-			<div class="dates">
-				<h3>Oct. 24th</h3>
-				<p>Kick Off @ TBD</p>
-				<p>Friday, 6-9p</p>
-			</div>
-			<div class="dates second">
-				<h3>Oct. 25th</h3>
-				<p>Conference @ TBD</p>
-				<p>Saturday, 8a-6p</p>
-			</div>
-		</div>
-		<a class="registerButton" href="">Register</a>
+		$i = 0;
+		foreach($gallery as $image){
+			if($i < 4){
+				echo '<img src="'.$image.'" />';
+				$i++;
+			}
+		}
+	?>
+	<div class="buttonWrapper">
+		<a href="<?php echo get_bloginfo('url'); ?>/gallery" class="button">S.F. Photo Gallery</a>
 	</div>
 </section>
 
-<section class="container speakers">
+<section id="speakers" class="container speakers">
 	<h3>Speakers</h3>
 
 	<ul class="profile">
@@ -71,7 +75,30 @@
 								
 	<?php endwhile; ?>
 	</ul>
+	<p class="center">More Speakers TBA</p>
 	<?php wp_reset_query(); ?>
+</section>
+
+<section id="schedule" class="container schedule">
+	<h3>Schedule</h3>
+	<div class="friday">
+		<h4>Friday, October 24th</h4>
+		<div class="scheduleNode">
+			<time>6p</time>
+			<div class="content">
+				<p>Kick Off Party @ <a href="http://workshopchicago.co/#home">Workshop</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="saturday">
+		<h4>Saturday, October 25th</h4>
+		<div class="scheduleNode">
+			<time>TBA</time>
+			<div class="content">
+				<p>Schedule TBD</p>
+			</div>
+		</div>
+	</div>
 </section>
 
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer') ); ?>

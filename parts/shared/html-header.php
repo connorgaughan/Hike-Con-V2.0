@@ -12,7 +12,7 @@
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicon.ico"/>
 		<?php wp_head(); ?>
-		<?php
+		<?php /*
 			// Here we're asking if the page we're calling has a featured image
 			if (has_post_thumbnail()) {
 			
@@ -66,6 +66,6 @@
 				</style>
 			
 			<?php } //end if 
-		?>
+		*/?>
 	</head>
 	<body <?php body_class(); ?>>

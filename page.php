@@ -27,10 +27,11 @@
 			<?php endwhile; ?>
 		</div>
 
-	<?php } else { ?>
+	<?php } else if(is_page('san-francisco')){ ?>
 
-		<div class="intro">
+		<div id="details" class="intro">
 		<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+			<img class="bean" src="<?php echo get_stylesheet_directory_uri(); ?>/_assets/images/hike-bridge-icon.svg" alt="Golden Gate Bridge"/>
 			<?php the_content(); ?>
 		<?php endwhile; ?>
 		</div>
@@ -43,11 +44,7 @@
 
 <section class="register includeBackground">
 	<div class="container">
-		<img class="bean" src="<?php echo get_stylesheet_directory_uri(); ?>/_assets/images/hike-bridge-icon.svg" alt="Golden Gate Bridge"/>
 		<div class="registerBox">
-			<div class="headlineWrap">
-				<h2><span>San Francisco</span></h2>
-			</div>
 			<div class="dates">
 				<h3>Apr. 4th</h3>
 				<p>Kick Off @ GitHub</p>
@@ -57,11 +54,27 @@
 				<p>Conference @ Adobe</p>
 			</div>
 		</div>
-		<!--a class="registerButton" href="">Register</a-->
 	</div>
 </section>
 
-<section class="container speakers">
+<section class="photoGallery">
+	 <?php 
+		$gallery = get_post_gallery_images( 236 );
+
+		$i = 0;
+		foreach($gallery as $image){
+			if($i < 4){
+				echo '<img src="'.$image.'" />';
+				$i++;
+			}
+		}
+	?>
+	<div class="buttonWrapper">
+		<a href="<?php echo get_bloginfo('url'); ?>/gallery" class="button">S.F. Photo Gallery</a>
+	</div>
+</section>
+
+<section id="speakers" class="container speakers">
 	<h3>Past Speakers</h3>
 
 	<ul class="profile">
@@ -96,13 +109,148 @@
 	<?php wp_reset_query(); ?>
 </section>
 
+<!--section id="schedule" class="container schedule">
+	<h3>Schedule</h3>
+	<div class="friday">
+		<h4>Friday, April 4th</h4>
+		<time>6-9p</time>
+		<div class="content">
+			<p>Daniel Burka</p>
+			<small>Hike Kick Off Party - Check your email for sign-up information. If you have any questions, email us at <a href="mailto:hello@hikecon.com">hello@hikecon.com</a></small>
+		</div>
+	</div>
+	<div class="saturday">
+		<h4>Saturday, April 5th</h4>
+		<div class="scheduleNode">
+			<time>8-9a</time>
+			<div class="content">
+				<p>Registration</p>
+				<small>Atrium</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>9-9:30a</time>
+			<div class="content">
+				<p>Coffee + Mingle</p>
+				<small>Mess Hall</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>9:30-10a</time>
+			<div class="content">
+				<p>Welcome</p>
+				<small>Laura Helen Winn and Jason Schwartz</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>10-10:45a</time>
+			<div class="content">
+				<p>Christopher Simmons</p>
+				<small>Name Dropping | Mess Hall</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>10:45-11a</time>
+			<div class="content">
+				<p>break</p>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>11a-12p</time>
+			<div class="content">
+				<p>Alice Lee</p>
+				<small>Start | Mess Hall</small>
+			</div>
+		</div>
+		<h4>Lunch</h4>
+		<div class="scheduleNode">
+			<time>12-1:30p</time>
+			<div class="content">
+				<p>Lunch / Chat + Chew</p>
+				<small>Mess Hall</small>
+			</div>
+		</div>
+		<h4>Afternoon Session One</h4>
+		<div class="scheduleNode">
+			<time>1:30-2:45p</time>
+			<div class="content">
+				<p>Brian Singer</p>
+				<small>How to Get Rich in Graphic Design | Mess Hall</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>1:30-2:45p</time>
+			<div class="content">
+				<p>Laura Brunow Miner, Toi Valentine, Melissa Cooper, Jason Hardy, Rick Byrne</p>
+				<small>How to Get That Gig | Campfire</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>1:30-2:45p</time>
+			<div class="content">
+				<p>Ash Huang and Rachel Been</p>
+				<small>What&rsquo;s Your Secret Sauce? Redefining a traditional design background | Canteen</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>2:45-3p</time>
+			<div class="content">
+				<p>Break</p>
+			</div>
+		</div>
+		<h4>Afternoon Session Two</h4>
+		<div class="scheduleNode">
+			<time>3-4:15p</time>
+			<div class="content">
+				<p>Marc O&rsquo;Brien</p>
+				<small>What to do if a glacier in Iceland throws a rock at your neck which automatically leads you to doubt your talents and question your confidence | Mess Hall</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>3-4:15p</time>
+			<div class="content">
+				<p>Stewart Scott-Curran</p>
+				<small>How I Learned To Stop Worrying And Enjoy The Ride | Campfire</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>3-4:15p</time>
+			<div class="content">
+				<p>MacFadden and Thorpe</p>
+				<small>Practical Advice for Dreamers | Compass</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>4-4:15p</time>
+			<div class="content">
+				<p>Break</p>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>4:30-5:15p</time>
+			<div class="content">
+				<p>Mike Monteiro</p>
+				<small>How Designers Destroyed the World | Mess Hall</small>
+			</div>
+		</div>
+		<div class="scheduleNode">
+			<time>6-8p</time>
+			<div class="content">
+				<p>After Party</p>
+				<small><a href="http://somastreatfoodpark.com/">Soma Street Food Park</a></small>
+			</div>
+		</div>
+	</div>
+</section-->
+
 <?php } ?>
 
 <?php if(is_page('purpose')) { ?>
 	<section class="team">
 		<div class="container">
-			<h3>Founders</h3>
-			<ul class="profile">
+			<h3>Hike is the conference we wish we'd attended in school.</h3>
+
+			<ul class="profile founders">
 			<?php query_posts(array('post_type' => 'member', 'level' => 'founders'));  while (have_posts ()): the_post(); ?> 
 						
 			<?php
@@ -139,10 +287,15 @@
 						echo '</p>';
 					} 
 				}?>	
-				</li>
-									
+				</li>				
 			<?php endwhile; ?>
 			</ul>
+	</div>
+	<?php wp_reset_query(); ?>
+	<div class="redBox">
+	<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+		<?php the_content(); ?>
+	<?php endwhile; ?>
 	</div>
 		<?php wp_reset_query(); ?>
 		

@@ -17,7 +17,7 @@ Template Name: Speakers
 			$twitter = str_replace($tags, "", $twitterHandle);
 			$url = preg_replace('#^https?://#', '', rtrim($website,'/'));
 		?>
-		<?php the_post_thumbnail('people'); ?>		
+		<div class="speakerImage"><?php the_post_thumbnail('people'); ?></div>		
 		<h1><?php the_title(); ?></h1>
 		<?php if( $time ){ echo '<time>' . $time . '</time>'; } ?>
 

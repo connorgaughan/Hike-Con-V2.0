@@ -25,12 +25,13 @@ a{
   	@include transition-timing-function(ease-in-out);
 	&:after{
 		content:"";
-		display:block;
+		display:inline-block;
 		width:100%;
 		height:1px;
 		background:$highlight;
 		position:absolute;
 		bottom:0;
+		left:0;
 		@include transition-property(all);
 	  	@include transition-duration(.25s);
 	  	@include transition-timing-function(ease-in-out);
@@ -43,6 +44,9 @@ a{
 		}
 	}
 }
+strong{
+	font-weight:bold;
+}
 p{
 	padding-bottom:12px;
 }
@@ -53,15 +57,15 @@ section{
 	margin-bottom:1.5em;
 }
 .button{
-	color:$highlight;
-	background:$white;
+	color:$white;
+	background:tranparent;
 	padding:15px 30px;
 	display:block;
 	width:200px;
 	margin:0 auto;
 	text-align:center;
 	text-decoration:none;
-	border:4px solid $highlight;
+	border:4px solid $white;
 	font-weight:bold;
 	@include adjust-font-size-to(18px);
 	@include transition-property(all);
@@ -72,8 +76,9 @@ section{
 		display:none;
 	}
   	&:hover{
-  		background:$highlight;
-  		color:$white;
+  		background:transparent;
+  		color:$highlight;
+  		border-color:$highlight;
   	}
 }
 
@@ -81,12 +86,13 @@ section{
 
 //--------------------------------------------------------------  Header
 header.fixedNav{
-	z-index:1000;
+	z-index:2000;
 	width:100%;
 	position:fixed;
 	top:0;
 	background:$highlight;
 	color:$white;
+	font-weight:bold;
 	padding-top:10px;
 	padding-bottom:10px;
 	.menuContainer{display:none;}
@@ -110,26 +116,6 @@ header.fixedNav{
 			font-weight:bold;
 		}
 	}
-	li.chicago:after{
-		content:"Upcoming";
-		display:inline-block;
-		@include adjust-font-size-to(12px);
-		color:$highlight;
-		padding:.125em .5em;
-		background:$white;
-		text-align:center;
-		margin:0 0 0 15px;
-	}
-	li.sanfran:after{
-		content:"Past Event";
-		display:inline-block;
-		@include adjust-font-size-to(12px);
-		color:$highlight;
-		padding:.125em .5em;
-		background:$white;
-		text-align:center;
-		margin:0 0 0 15px;
-	}
 	.menu{
 		padding:0;
 		margin:0;
@@ -137,11 +123,25 @@ header.fixedNav{
 	a{ 
 		color:$white; 
 		text-decoration:none;
+		&:hover{
+			color:$highlight;
+		}
 		&:after{
 			content:"";
 			display:none;
 		}
 	}
+}
+
+.san-francisco header.fixedNav .menuContainer li.sanfran, 
+.home header.fixedNav .menuContainer li.chicago,
+.purpose header.fixedNav .menuContainer li.chicago,
+.gallery header.fixedNav .menuContainer li.chicago{
+	display:none;
+}
+
+.chicago nav .san-francisco{
+	display:none;
 }
 
 .presents{
@@ -210,45 +210,59 @@ header.fixedNav{
 
 
 //--------------------------------------------------------------  Header
-.hero, .homeHero{
+.hero{
+	z-index:100;
 	color:$white;
 	text-align:center;
+	font-weight:bold;
+	position:relative;
 	h1 img{
-		display:inline;
+		display:inline-block;
+		width:215px;
+		height:75px;
+		z-index:2000;
+	}
+	h1{
+		z-index:2000;
+	}
+	li{
+		position:relative;
+		h1, p, img, a{
+			z-index:10000;
+		}
+		&:after{
+			z-index:-1;
+			content:"";
+			display:block;
+			width:100%;
+			height:100%;
+			position:absolute;
+			top:0;
+			@include background-image(linear-gradient(rgba(0,0,0, .6), transparent));
+		}
 	}
 }
-.san-francisco h1:after{
-	display:block;
-	margin:0 auto;
-	text-align:center;
-	content:"April 4th & 5th, 2014";
-}
-h1+p{
-	@include padding-leader(2);
-	@include padding-trailer(5);
-	@include adjust-font-size-to(18px);
-}
 
-.san-francisco h1:after{
-	@include padding-leader(2);
-	@include padding-trailer(5);
-	@include adjust-font-size-to(6px);
+h1+p{
+	@include padding-trailer(1);
+	@include adjust-font-size-to(24px);
 }
 
 p .register, li.register a{
 	display:inline-block;
 	padding:.5em 1.875em;
 	@include adjust-font-size-to(18px);
-	color:$highlight;
-	border: 4px solid $highlight;
+	color:$white;
+	border: 4px solid $white;
 	text-decoration:none;
 	@include transition-property(all);
   	@include transition-duration(.25s);
   	@include transition-timing-function(ease-in-out);
   	font-weight:bold;
 	&:hover{
-		background:$highlight;
-		color:$white;
+		background:transparent;
+		color:$highlight;
+		border-color:$highlight;
 	}
 	&:after{
 		content:"";
@@ -269,6 +283,9 @@ p .register, li.register a{
 			@include adjust-font-size-to(10px);
 		}
 	}
+	.presents .tsh{
+		max-width:175px;
+	}
 	header.fixedNav{
 		position:absolute;
 		background:transparent;
@@ -284,286 +301,338 @@ p .register, li.register a{
 				display:inline-block;
 				margin-left:2em;
 			}
-			li.chicago, li.sanfran{
-				position:relative;
-				padding-bottom:25px;
-			}
-			li.chicago:after, li.sanfran:after{
-				display:block;
-				position: absolute;
-				@include opacity(0);
-				bottom: 0;
-				margin: 0;
-				padding: .25em .5em;
-				@include transition-property(all);
-  				@include transition-duration(.25s);
-  				@include transition-timing-function(ease-in-out);
-			}
-			li.chicago:hover:after, li.sanfran:hover:after{
-				@include opacity(1);
-			}
 		}
 	}
-	.homeHero h1+p{
+	.hero h1+p{
 		@include adjust-font-size-to(36px);
-	}
-	.san-francisco h1:after{
-		@include adjust-font-size-to(6px);
-		font-weight:300;
 	}
 }
 
 
-.homeHero {  
+.hero {  
+	margin-bottom:0;
+	.social{
+		text-align:center;
+		a:after{
+			content:"";
+			display:none;
+		}
+		img{
+			display:inline;
+			margin:0 15px;
+
+		}
+	}
 	.slide1{
-		padding-top:7em; 
-		padding-bottom:2em;
-		background-image: url(../images/slider/1-450x169.jpg); 
+
+		background-image: url(../images/slider/1-450x450.jpg); 
 		background-size:cover; 
 		background-repeat:none; 
-		background-position:top center; 
+		background-position:top center;
+		padding-top:100px; 
+		padding-bottom:20px;
 	}
 	.slide2{
-		padding-top:7em; 
-		padding-bottom:2em;
-		background-image: url(../images/slider/2-450x169.jpg); 
+
+		background-image: url(../images/slider/2-450x450.jpg); 
 		background-size:cover; 
 		background-repeat:none; 
 		background-position:top center; 
+		padding-top:100px;
+		padding-bottom:20px;
 	}
 	.slide3{
-		padding-top:7em; 
-		padding-bottom:2em;
-		background-image: url(../images/slider/3-450x169.jpg); 
+
+		background-image: url(../images/slider/3-450x450.jpg); 
 		background-size:cover; 
 		background-repeat:none; 
 		background-position:top center; 
+		padding-top:100px;
+		padding-bottom:20px;
+	}
+	.slide5{
+
+		background-image: url(../images/slider/5-450x450.jpg); 
+		background-size:cover; 
+		background-repeat:none; 
+		background-position:top center; 
+		padding-top:100px;
+		padding-bottom:20px;
 	}
 	.slide4{
-		padding-top:7em; 
-		padding-bottom:2em;
-		background-image: url(../images/slider/4-450x169.jpg); 
+
+		background-image: url(../images/slider/4-450x450.jpg); 
 		background-size:cover; 
 		background-repeat:none; 
 		background-position:top center; 
+		padding-top:100px;
+		padding-bottom:20px;
 	}
 }
 
 @media screen and (min-width: 36em){ 
-	.homeHero{ 
+	.hero{ 
 		.slide1{
 			background-image: url(../images/slider/1-600x225.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 		.slide2{
 			background-image: url(../images/slider/2-600x225.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 		.slide3{
 			background-image: url(../images/slider/3-600x225.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
+		}
+		.slide5{
+			background-image: url(../images/slider/5-600x225.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
 		} 
 		.slide4{
 			background-image: url(../images/slider/4-600x225.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 	}
 }
 @media screen and (min-width: 48em){ 
-	.homeHero{ 
+	.hero{ 
 		.slide1{
 			background-image: url(../images/slider/1-800x301.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 		.slide2{
 			background-image: url(../images/slider/2-800x301.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 		.slide3{
 			background-image: url(../images/slider/3-800x301.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
-		} 
+		}
+		.slide5{
+			background-image: url(../images/slider/5-800x301.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+		}
 		.slide4{
 			background-image: url(../images/slider/4-800x301.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 	}
 }
 @media screen and (min-width: 50em){ 
-	.homeHero{ 
+	.hero h1 img{
+		width:400px;
+		height:139px;
+	}
+	.hero li{
+		min-height:450px;
+	}
+	.hero{ 
 		.slide1{
 			background-image: url(../images/slider/1-1000x376.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
+			padding-top:150px; 
+			padding-bottom:50px;
 		} 
 		.slide2{
 			background-image: url(../images/slider/2-1000x376.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
+			padding-top:150px; 
+			padding-bottom:50px;
 		} 
 		.slide3{
 			background-image: url(../images/slider/3-1000x376.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
-		} 
+			padding-top:150px; 
+			padding-bottom:50px;
+		}
+		.slide5{
+			background-image: url(../images/slider/5-1000x376.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+			padding-top:150px; 
+			padding-bottom:50px;
+		}
+
 		.slide4{
 			background-image: url(../images/slider/4-1000x376.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
+			padding-top:150px; 
+			padding-bottom:50px;
 		} 
 	} 
 }
 @media screen and (min-width: 60em){ 
-	.homeHero{ 
+	.hero{ 
 		.slide1{
 			background-image: url(../images/slider/1-1200x451.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 		.slide2{
 			background-image: url(../images/slider/2-1200x451.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 		.slide3{
 			background-image: url(../images/slider/3-1200x451.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
-		} 
+		}
+		.slide5{
+			background-image: url(../images/slider/5-1200x451.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+		}
 		.slide4{
 			background-image: url(../images/slider/4-1200x451.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 	} 
 }
 @media screen and (min-width: 70em){ 
-	.homeHero{ 
+	.hero{ 
 		.slide1{
 			background-image: url(../images/slider/1-1600x602.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 		.slide2{
 			background-image: url(../images/slider/2-1600x602.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 		.slide3{
 			background-image: url(../images/slider/3-1600x602.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
-		} 
+		}
+		.slide5{
+			background-image: url(../images/slider/5-1600x602.jpg); 
+			background-size:cover; 
+			background-repeat:none; 
+			background-position:top center; 
+		}
 		.slide4{
 			background-image: url(../images/slider/4-1600x602.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 	} 
 }
 @media screen and (min-width: 80em){ 
-	.homeHero{ 
+	.hero{ 
 		.slide1{
 			background-image: url(../images/slider/1.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 		.slide2{
 			background-image: url(../images/slider/2.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 		.slide3{
 			background-image: url(../images/slider/3.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
-		} 
+		}
+
 		.slide4{
 			background-image: url(../images/slider/4.jpg); 
 			background-size:cover; 
 			background-repeat:none; 
 			background-position:top center; 
-			padding-top:15em; 
-			padding-bottom:15em;
 		} 
 	} 
+}
+aside.slideMenu.fixed{
+	position:fixed;
+	width:100%;
+	top:0;
+	z-index:100;
+}
+aside.slideMenu{
+	background:$highlight;
+	text-align:center;
+	padding:20px 0;
+	display:none;
+	@include adjust-font-size-to(18px);
+	a{
+		color:$white;
+		font-weight:bold;
+		padding:10px;
+	}
+	a:after{
+		display:none;
+	}
+	a:hover{
+		color:$white;
+	}
+	.register{
+		border:4px solid $white;
+		padding:10px 25px;
+	}
+	li{
+		display:inline-block;
+		margin:10px 15px 10px 0;
+	}
+}
+
+@media screen and (min-width:50em){
+	aside.slideMenu{
+		display:block;
+	}
+}
+
+@media screen and (min-width:70em){
+	aside.slideMenu{
+		li{
+			display:inline-block;
+			margin:10px 35px 10px 0;
+		}
+	}
 }
 
 //--------------------------------------------------------------  Intro/Page Content
@@ -571,12 +640,8 @@ p .register, li.register a{
 	color:$secondary;
 	text-align:center;
 	@include adjust-font-size-to(18px);
-	padding-bottom:3em;
 }
 @media screen and (min-width:40em){
-	.presents .tsh{
-		max-width:175px;
-	}
 	.intro, .pageContent{
 		p {@include adjust-font-size-to(24px, 6);}
 		@include column(8);
@@ -594,63 +659,99 @@ p .register, li.register a{
 }
 //-------------------------------------------------------------- Photo Gallery
 .photoGallery{
-	background: url(../images/photoGallery-sm.jpg) center center no-repeat;
-	background-size:cover;
-	padding:8em 0;
-}
-@media screen and (min-width: 40em){ 
-	.photoGallery{
-		background: url(../images/photoGallery-normal.jpg) center center no-repeat;
-		background-size:cover;
-		padding:12em 0;
+	position:relative;
+	@extend .clearfix;
+	background:#000000;
+	img{
+		max-width:50%;
+		display:block;
+		float:left;
+		@include opacity(.65);
+	}
+	.buttonWrapper{
+		position:absolute;
+		top:40%;
+		left:5%;
+		right:5%;
+		width:90%;
+		.button{
+			min-width:300px;
+			max-width:90%;
+			margin:0 auto;
+		}
 	}
 }
-@media screen and (min-width: 60em){ 
+
+@media screen and (min-width:50em){
 	.photoGallery{
-		background: url(../images/photoGallery-med.jpg) center center no-repeat;
-		background-size:cover;
-		padding:18em 0;
+		img{ 
+			max-width:25%;
+		}
 	}
 }
-@media screen and (min-width: 60em){ 
-	.photoGallery{
-		background: url(../images/photoGallery-lrg.jpg) center center no-repeat;
-		background-size:cover;
-		padding:20em 0;
+
+
+//--------------------------------------------------------------  Schedule
+.schedule{
+	width:90%;
+	margin:0 auto 1.5em auto;
+	.scheduleNode{
+		@include clearfix;
+		margin-bottom:50px;
+	}
+	h4{
+		color:$highlight;
+		font-weight:bold;
+		@include adjust-font-size-to(22px);
+		margin-bottom:25px;
+	}
+	time{
+		display:block;
+		height:110px;
+		width:110px;
+		max-width:35%;
+		@include adjust-font-size-to(18px);
+		text-align:center;
+		font-weight:bold;
+		color:$highlight;
+		@include border-radius(100px);
+		border:6px solid $highlight;
+		float:left;
+		padding-top:35px;
+		margin-right:5%;
+	}
+	.content{
+		max-width:60%;
+		display:block;
+		float:left;
+	}
+	p{
+		@include adjust-font-size-to(24px);
+		padding-top:10px;
+	}
+}
+
+@media screen and (min-width:50em){
+	.schedule{
+		.friday,
+		.saturday{
+			width:45%;
+			float:left;
+			margin-right:5%;
+		}
+		h4{
+			margin-bottom:50px;
+		}
 	}
 }
 
 //--------------------------------------------------------------  Register Content
-.no-svg .registerButton{
-	background: url(../images/hike-register-button.png) center center no-repeat $white;
-}
-.registerButton{
-	background: url(../images/hike-register-button.svg) center center no-repeat $white;
-	text-align:center;
-	display:block;
-	width:160px;
-	height:80px;
-	padding-top:25px;
-	font-weight:bold;
-	@include adjust-font-size-to(18px);
-	color:$highlight;
-	margin:-35px auto 0 auto;
-	&:after{
-		content:"";
-		display:none;
-	}
-	&:hover{
-		color:$primary;
-	}
-}
-.registerBox{
+.registerBox, .redBox{
 	@extend .clearfix;
 	text-align:center;
 	max-width:700px;
 	width:90%;
 	margin:0 auto;
-	border:6px solid $highlight;
-	padding:10px 30px 50px 30px;
 	position:relative;
 	p{
 		@include adjust-font-size-to(24px);
@@ -658,11 +759,15 @@ p .register, li.register a{
 }
 .bean{
 	display:block;
-	margin:1.5em auto 2em auto;
-	width:67px;
-	height:37px;
+	margin:1.5em auto 0 auto;
+	width:85px;
+	height:47px;
 }
 
+.redBox{
+	color:$secondary;
+	border: 6px solid $highlight;
+}
 
 @media screen and (min-width:46em){
 	.headlineWrap{
@@ -683,8 +788,15 @@ p .register, li.register a{
 		}
 	}
 	.registerBox{
-		padding:60px 80px;
-		text-align:left;
+		padding:20px 80px;
+		text-align:left !important;
+		h3{
+			text-align:left;
+		}
+	}
+	.redBox{
+		padding:20px;
+		text-align:left !important;
 	}
 	.dates{
 		@include column(5);
@@ -743,23 +855,43 @@ p .register, li.register a{
 	width:95%;
 	margin:10% auto;
 	background:$white;
-	padding:5px;
+	padding:12px;
 	.speakerBorder{
-		padding:20px;
+		padding:20px 40px;
 		border: 6px solid $highlight;
 		color:$secondary;
 		img{
-			max-width:150px;
+			width:160px;
 			display:block;
-			margin:-75px auto 0 auto;
+			margin:-100px auto 0 auto;
 			@include border-radius(100%);
-			border:12px solid $white;
+			border:6px solid $highlight;
+			position:relative;
+		}
+		.speakerImage{
+			height:160px;
+			width:160px;
+			margin:0 auto;
+			display:block;
+			position:relative;
+			&:before{
+				content: "";
+				display: block;
+				width: 184px;
+				height: 184px;
+				background: #fff;
+				position: absolute;
+				top: -12px;
+				left: -12px;
+				z-index: -100;
+				@include border-radius(100%);
+			}
 		}
 		h1{
 			color:$highlight;
 			@include adjust-font-size-to(32px);
 			margin:0;
-			padding:.25em 0 0 0;
+			padding:1em 0 0 0;
 			text-align:center;
 		}
 		time{
@@ -788,8 +920,15 @@ p .register, li.register a{
 	}
 }
 @media screen and (min-width:46em){
-	.speakers h3, .team h3{
-		text-align:left;
+	.profile.founders li{
+		@include column(3);
+		min-height:250px;
+		&:first-child{
+			@include push(3);
+		}
+		&:last-child{
+			@include pull(3);
+		}
 	}
 	.profile li{
 		@include column(4);
@@ -797,6 +936,16 @@ p .register, li.register a{
 	}
 }
 @media screen and (min-width:64em){
+	.profile.founders li{
+		@include column(3);
+		min-height:250px;
+		&:first-child{
+			@include push(3);
+		}
+		&:last-child{
+			@include pull(3);
+		}
+	}
 	.profile li{
 		@include column(3);
 		min-height:250px;
@@ -805,11 +954,8 @@ p .register, li.register a{
 
 
 //--------------------------------------------------------------  Footer
-.no-svg footer{
-	background:url(../images/hike-partners-bg.png) top left repeat $highlight;
-}
 footer{
-	background:url(../images/hike-partners-bg.svg) top left repeat $highlight;
+	background:$highlight;
 	padding-top:2.5em;
 	.footerLogo{
 		display:block;

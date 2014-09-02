@@ -14,27 +14,17 @@
 	// add google analytics to footer
 	function add_google_analytics() {
 		if (! is_user_logged_in() ){
-			echo '
-				<script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
-				
-				<script type="text/javascript">
-					var pageTracker = _gat._getTracker("UA-XXXXXXXX-X");
-					pageTracker._trackPageview();
-				</script>
+			echo "
+				<script>
+	  				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-				<script type="text/javascript">
-					function removeEvents() {
-						document.body.removeEventListener("click", sendInteractionEvent);
-						window.removeEventListener("scroll", sendInteractionEvent);
-					}
-					function sendInteractionEvent() {
-						_gaq.push(["_trackEvent", "send", "event", "Page Interaction"]);
-						removeEvents();
-					}
-					document.body.addEventListener("click", sendInteractionEvent);
-					window.addEventListener("scroll", sendInteractionEvent);
+	  				ga('create', 'UA-46281118-1', 'hikecon.com');
+	  				ga('send', 'pageview');
 				</script>
-			';
+			";
 		}
 	}
 	add_action('wp_footer', 'add_google_analytics');
@@ -50,6 +40,13 @@
 	}
 	add_filter('jpeg_quality', 'gpp_jpeg_quality_callback');
 
+	// Add SVG Upload Support
+	function cc_mime_types( $mimes ){
+		$mimes['svg'] = 'image/svg+xml';
+		return $mimes;
+	}
+	add_filter( 'upload_mimes', 'cc_mime_types' );
+
 
 	// Thumbnails
 	add_theme_support('post-thumbnails');
@@ -59,6 +56,7 @@
 	add_image_size( 'medium', 800, 9999 );
 	add_image_size( 'small', 600, 9999 );
 	add_image_size( 'thumb', 450, 9999 );
+	add_image_size( 'gallery', 550, 550, array( 'center', 'center' ));
 	
 	// Page Excerpts
 	add_action( 'init', 'my_add_excerpts_to_pages' );
@@ -80,16 +78,11 @@
 	require_once( 'parts/functions/speakers-metaBox.php' );
 	require_once( 'parts/functions/sponsors-metaBox.php' );
 	
-	
 	// Scripts
 	function starkers_script_enqueuer() {
 		wp_deregister_script( 'jquery' );
 
 		wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js','', '', true );
-		
-		if(is_front_page()){
-			wp_enqueue_script( 'slider', get_template_directory_uri().'/_assets/js/jquery.bxslider.min.js', array( 'jquery' ), '', true );
-		}
 		
 		wp_enqueue_script( 'site', get_template_directory_uri().'/_assets/js/site.min.js', array( 'jquery' ), '', true );
 
