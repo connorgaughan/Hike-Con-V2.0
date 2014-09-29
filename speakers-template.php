@@ -23,7 +23,7 @@ Template Name: Speakers
 
 		<ul>
 		<?php if( $twitterHandle ){
-			echo '<li><a href="https://twitter.com/' . $twitter . '" target="blank">' . $twitterHandle . '</a></li>';
+			echo '<li><a href="https://twitter.com/' . $twitter . '" target="blank">' . $tags . $twitter . '</a></li>';
 		} if( $website ){
 			echo '<li><a href="http://' . $url . '">' . $company . '</a></li>';
 		} ?>
